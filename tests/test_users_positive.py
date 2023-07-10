@@ -5,11 +5,7 @@ from requests_mock import Mocker
 @pytest.fixture
 def mock_requests_get(requests_mock):
     # Patching requests.get to return a mocked response
-    requests_mock.get.return_value = MockResponse()
-
-class MockResponse:
-    def __init__(self, status_code=200):
-        self.status_code = status_code
+    requests_mock.get(url="http://127.0.0.1:8000/users/", status_code=200)
 
 def test_endpoint(mock_requests_get):
     # Arrange
